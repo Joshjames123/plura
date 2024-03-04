@@ -5,7 +5,7 @@ import { db } from "./db";
 import { redirect } from "next/navigation";
 import { Agency, Plan, User } from "@prisma/client";
 
-export const getAuthIserDetails = async () => {
+export const getAuthUserDetails = async () => {
   const user = await currentUser();
   if (!user) {
     return;
@@ -263,3 +263,19 @@ export const upsertAgency = async (agency: Agency, price?: Plan) => {
     console.log(error);
   }
 };
+
+
+export const getNotificationAndUser = async (agencyId: string) => {
+  try {
+    const response = await db.notification.findMany({
+      where: { agencyId },
+      include: { User: true },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    })
+    return response
+  } catch (error) {
+    console.log(error)
+  }
+}
