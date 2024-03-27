@@ -53,7 +53,7 @@ import { Switch } from "../ui/switch";
 import { v4 } from "uuid";
 
 interface Props {
-  id: string;
+  id: string | null;
   type: "agency" | "subaccount";
   userData?: Partial<User>;
   subAccounts?: SubAccount[];
