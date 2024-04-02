@@ -4,6 +4,7 @@ import DataTable from "./data-table";
 import { currentUser } from "@clerk/nextjs";
 import { Plus } from "lucide-react";
 import { columns } from "./columns";
+import SendInvitation from "@/components/forms/send-invitation";
 
 interface Props {
   params: { agencyId: string };
@@ -24,6 +25,7 @@ const TeamPage = async ({ params }: Props) => {
   });
 
   if (!authUser) return null;
+
   const agencyDetails = await db.agency.findUnique({
     where: {
       id: params.agencyId,
@@ -43,7 +45,7 @@ const TeamPage = async ({ params }: Props) => {
           Add
         </>
       }
-      // modalChildren={<SendInvitation agencyId={agencyDetails.id} />}
+      modalChildren={<SendInvitation agencyId={agencyDetails.id} />}
       filterValue="name"
       columns={columns}
       data={teamMembers}
