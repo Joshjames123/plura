@@ -30,8 +30,8 @@ const __getUsersWithAgencySubAccountPermissionsSidebarOptions = async (
       Agency: { include: { SubAccount: true } },
       Permissions: { include: { SubAccount: true } },
     },
-  })
-}
+  });
+};
 
 export type AuthUserWithAgencySigebarOptionsSubAccounts =
   Prisma.PromiseReturnType<typeof getAuthUserDetails>;
